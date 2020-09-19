@@ -3,9 +3,13 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./gobarber-web
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
       run: yarn
+      working-directory: ${{env.working-directory}}
     - name: Run ESLint
       run: eslint . --ext .js,.jsx,.ts,.tsx
+      working-directory: ${{env.working-directory}}
