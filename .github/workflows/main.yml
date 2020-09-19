@@ -6,10 +6,7 @@ jobs:
     env:
       working-directory: ./gobarber-web
     steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: yarn
-      working-directory: ${{env.working-directory}}
-    - name: Run ESLint
-      run: yarn eslint
-      working-directory: ${{env.working-directory}}
+      - name: Use current action
+        uses: getsentry/action-eslint-fix@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
