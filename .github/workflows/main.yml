@@ -11,5 +11,5 @@ jobs:
       run: yarn
       working-directory: ${{env.working-directory}}
     - name: Run ESLint
-      run: eslint . --ext .js,.jsx,.ts,.tsx
+      run: yarn eslint
       working-directory: ${{env.working-directory}}
