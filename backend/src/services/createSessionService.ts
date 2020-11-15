@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm'
 import User from '../models/user'
 import { compare } from 'bcryptjs'
+import { sign } from 'jsonwebtoken'
 
 interface Data {
   email: string
@@ -9,6 +10,7 @@ interface Data {
 
 interface Response {
   user: User
+  token?: string
 }
 
 export default class CreateSessionService {
@@ -29,8 +31,14 @@ export default class CreateSessionService {
       throw new Error('Email or password invalids')
     }
 
+    const token = sign({}, '1fb617d1fda85e14f94dcbca2ed88b08', {
+      subject: user.id,
+      expiresIn: '7d',
+    })
+
     return {
       user,
+      token,
     }
   }
 }

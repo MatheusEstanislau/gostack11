@@ -16,8 +16,6 @@ export default class CreateUserService {
       where: { email },
     })
 
-    console.log(userExits)
-
     if (userExits) {
       throw new Error('Email already used')
     }
